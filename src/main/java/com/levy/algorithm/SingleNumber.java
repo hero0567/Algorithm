@@ -1,5 +1,6 @@
 package com.levy.algorithm;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -29,11 +30,13 @@ import java.util.stream.Stream;
 public class SingleNumber {
 
     private static List<Integer> list = new ArrayList<>();
+    static int expected = 0;
 
     @BeforeClass
     public static void beforeClass() {
         Random random = new Random();
-        list.add(random.nextInt(100));
+        expected = random.nextInt(100);
+        list.add(expected);
         IntStream.generate(() -> random.nextInt(100)).limit(50).forEach(n -> {
             list.add(n);
             list.add(n);
@@ -47,6 +50,7 @@ public class SingleNumber {
         Optional<Integer> result = list.stream().reduce((sum, n) -> sum ^ n);
 
         System.out.println("result :" + result.get());
+        Assert.assertEquals(expected, result.get().intValue());
     }
 
     @Test
@@ -61,7 +65,10 @@ public class SingleNumber {
                 set.remove(nums[i]); // 删除重复出现的数字
             }
         }
-        System.out.println("result :" + set.iterator().next());
+        int result = set.iterator().next();
+        System.out.println("result :" + result);
+
+        Assert.assertEquals(expected, result);
     }
 
 }
