@@ -1,4 +1,4 @@
-package com.levy.dfs;
+package com.levy.algorithm.dfs;
 
 public class DFSMaze {
     /**
