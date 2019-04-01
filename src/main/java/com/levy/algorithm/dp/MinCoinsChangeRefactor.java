@@ -1,5 +1,9 @@
 package com.levy.algorithm.dp;
 
+/**
+ *  1. 带返回值
+ *  2. 不是按顺序从小到大的填表，是缺什么填什么
+ */
 public class MinCoinsChangeRefactor {
 
     public static int makeChange(int[] values, int coinKinds, int money,

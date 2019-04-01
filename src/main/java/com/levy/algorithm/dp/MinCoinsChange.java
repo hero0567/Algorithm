@@ -1,5 +1,7 @@
 package com.levy.algorithm.dp;
 
+import org.junit.Test;
+
 public class MinCoinsChange {
     /**
      * 硬币找零问题描述：现存在一堆面值为 V1、V2、V3 … 个单位的硬币，问最少需要多少个硬币才能找出总值为 T 个单位的零钱？
@@ -54,5 +56,29 @@ public class MinCoinsChange {
         int[] coinsUsed = new int[money + 1];
 
         makeChange(coinValue, coinValue.length, money, coinsUsed);
+    }
+
+
+    @Test
+    public void antherSolution() {
+
+        int a[] = {1, 3, 5}, sum = 11, cent = 0;
+        int[] dp = new int[sum + 1];
+        dp[0] = 0;
+        for (int i = 1; i <= sum; i++) {
+            dp[i] = i;//我们假设存在1元的硬币那么i元最多只需要i枚1元硬币，当然最好设置dp[i]等于无穷大
+        }
+        for (int i = 1; i <= sum; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (i >= a[j] && dp[i - a[j]] + 1 < dp[i]) {
+                    dp[i] = dp[i - a[j]] + 1;
+                }
+            }
+        }
+
+        for (int i = 0; i <= sum; i++) {
+            System.out.println(i + "的最优解释：" + dp[i]);
+
+        }
     }
 }

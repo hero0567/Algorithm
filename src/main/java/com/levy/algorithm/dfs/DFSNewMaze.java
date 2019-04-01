@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * 返回结果，而不是print出来
+ */
 public class DFSNewMaze {
     /**
      * DFS算法解决走迷宫问题

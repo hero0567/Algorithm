@@ -1,5 +1,8 @@
 package com.levy.algorithm.dp;
 
+/**
+ * 返回所有的可以组成的集合，而不是最短
+ */
 public class CoinsAllGroup {
 
     public static int makeChange(int[] values, int coinKinds, int money,
