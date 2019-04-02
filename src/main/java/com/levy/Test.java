@@ -3,28 +3,37 @@ package com.levy;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 public class Test {
 
     public static void main(String[] args) {
 
-        int a[] = {1, 3, 5}, sum = 11, cent = 0;
-        int[] dp = new int[sum + 1];
-        dp[0] = 0;
-        for (int i = 1; i <= sum; i++) {
-            dp[i] = i;//我们假设存在1元的硬币那么i元最多只需要i枚1元硬币，当然最好设置dp[i]等于无穷大
-        }
-        for (int i = 1; i <= sum; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (i >= a[j] && dp[i - a[j]] + 1 < dp[i]) {
-                    dp[i] = dp[i - a[j]] + 1;
-                }
+        int len = 10;
+        int[] a = new int[len];
+        int[] b = new int[len];
+        Random random = new Random();
+        for (int i = 0; i < len; i++) {
+            if (i == 0) {
+                a[i] = random.nextInt(10) + 1;
+                b[i] = random.nextInt(10) + 1;
+                continue;
             }
+            a[i] = a[i - 1] + random.nextInt(10) + 1;
+            b[i] = b[i - 1] + random.nextInt(10) + 1;
         }
 
-        for (int i = 0; i <= sum; i++) {
-            System.out.println(i + "的最优解释：" + dp[i]);
+        print(a, b, len);
+    }
 
+    public static void print(int[] a, int[] b, int len) {
+        for (int i = 0; i < len; i++) {
+            System.out.print(a[i] + "->");
+        }
+        System.out.println();
+        for (int i = 0; i < len; i++) {
+            System.out.print(b[i] + "->");
         }
     }
+
 }
