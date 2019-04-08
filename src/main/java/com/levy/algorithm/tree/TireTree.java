@@ -30,7 +30,7 @@ public class TireTree {
     private Node rootNode = new Node();
 
     class Node {
-        int count;
+        int count;  //统计单词的数量
         Map<Character, Node> childMap = new HashMap<>();
     }
 
