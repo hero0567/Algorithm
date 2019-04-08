@@ -50,84 +50,78 @@ public class SplitWordDictWithGroup {
 
     @Test
     public void testSplitWordDict() {
-        String s = "aaa";
+        String s = "aaaa";
         String[] wordDict = {"a", "aa"};
         List<List<String>> result = new ArrayList<>();
-
-        splitWordDict(s, wordDict, result, 0);
+        List<String> tempResult = new ArrayList<>();
+        splitWordDict(s, wordDict, result, tempResult);
         for (List<String> r : result) {
             System.out.println(String.join(":", r));
         }
 
     }
-//
-//    @Test
-//    public void testSplitWordDict1() {
-//        String s = "helloworld";
-//        String[] wordDict = {"hello", "world"};
-//        List<String> result = new ArrayList<>();
-//
-//        boolean match = splitWordDict(s, wordDict, result);
-//        Assert.assertTrue(match);
-//    }
-//
-//    @Test
-//    public void testSplitWordDict2() {
-//        String s = "abc";
-//        String[] wordDict = {"abc", "bcd"};
-//        List<String> result = new ArrayList<>();
-//
-//        boolean match = splitWordDict(s, wordDict, result);
-//        Assert.assertTrue(match);
-//    }
-//
-//    @Test
-//    public void testSplitWordDict3() {
-//        String s = "catsandog";
-//        String[] wordDict = {"cats", "dog", "sand", "and", "cat"};
-//        List<String> result = new ArrayList<>();
-//
-//        boolean match = splitWordDict(s, wordDict, result);
-//        Assert.assertFalse(match);
-//    }
-//
-//    @Test
-//    public void testSplitWordDict4() {
-//        String s = "catsanddog";
-//        String[] wordDict = {"cats", "dog", "sand", "and", "cat"};
-//        List<String> result = new ArrayList<>();
-//
-//        boolean match = splitWordDict(s, wordDict, result);
-//        Assert.assertTrue(match);
-//    }
 
-    public void splitWordDict(String s, String[] wordDict, List<List<String>> result, int step) {
+    @Test
+    public void testSplitWordDict1() {
+        String s = "helloworld";
+        String[] wordDict = {"hello", "world"};
+        List<List<String>> result = new ArrayList<>();
+        List<String> tempResult = new ArrayList<>();
+        splitWordDict(s, wordDict, result, tempResult);
+        for (List<String> r : result) {
+            System.out.println(String.join(":", r));
+        }
+    }
 
+    @Test
+    public void testSplitWordDict2() {
+        String s = "abc";
+        String[] wordDict = {"abc", "bcd"};
+        List<List<String>> result = new ArrayList<>();
+        List<String> tempResult = new ArrayList<>();
+        splitWordDict(s, wordDict, result, tempResult);
+        for (List<String> r : result) {
+            System.out.println(String.join(":", r));
+        }
+    }
+
+    @Test
+    public void testSplitWordDict3() {
+        String s = "catsandog";
+        String[] wordDict = {"cats", "dog", "sand", "and", "cat"};
+        List<List<String>> result = new ArrayList<>();
+        List<String> tempResult = new ArrayList<>();
+        splitWordDict(s, wordDict, result, tempResult);
+        for (List<String> r : result) {
+            System.out.println(String.join(":", r));
+        }
+    }
+
+    @Test
+    public void testSplitWordDict4() {
+        String s = "catsanddog";
+        String[] wordDict = {"cats", "dog", "sand", "and", "cat"};
+        List<List<String>> result = new ArrayList<>();
+        List<String> tempResult = new ArrayList<>();
+        splitWordDict(s, wordDict, result, tempResult);
+        for (List<String> r : result) {
+            System.out.println(String.join(":", r));
+        }
+    }
+
+    public void splitWordDict(String s, String[] wordDict, List<List<String>> result, List<String> tempResult) {
         if (s.length() == 0) {
+            List<String> mathedResult = new ArrayList<>(tempResult);
+            result.add(mathedResult);
             return;
         }
 
-        List<String> mathedList = null;
-
-
-        boolean match = false;
         for (String word : wordDict) {
-            if (step == 0) {
-                mathedList = new ArrayList<>();
-                result.add(mathedList);
-            } else {
-                mathedList = result.get(result.size() - 1);
-            }
-
             if (s.startsWith(word)) {
-                mathedList.add(word);
-                splitWordDict(s.substring(word.length()), wordDict, result, step + 1);
-                match = true;
+                tempResult.add(word);
+                splitWordDict(s.substring(word.length()), wordDict, result, tempResult);
+                tempResult.remove(word);
             }
-        }
-
-        if (!match) {
-            result.remove(result.size() - 1);
         }
     }
 }
